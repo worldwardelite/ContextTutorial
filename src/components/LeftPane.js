@@ -3,7 +3,7 @@ import Sends from './Sends';
 
 const LeftPane =()=> {
     return(
-        <div >
+        <div className = "pane">
             <Sends/>
         </div>
     )

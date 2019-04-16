@@ -18,7 +18,7 @@ class SampleProvider extends Component {
     // 객체 하나로 한꺼번에 전달하기 위함입니다.
     actions = {
         setValue: (value) => {
-            this.state( {value});
+            this.setState( {value});
 
         }
     }
@@ -39,8 +39,24 @@ class SampleProvider extends Component {
         );
     }
 }
- 
+  // use Hoc 
+  function useSample(WrappedComponent){
+    return function UseSample(props) {
+        return (
+            <SampleConsumer>
+                {
+                    ({ state, actions}) => (
+                        <WrappedComponent
+                        value = {state.value}
+                        setValue = {actions.setValue}
+                        />
+                    )
+                }
+            </SampleConsumer>
+        )
+    }
+}
 
-export {SampleProvider, SampleConsumer};
+export {SampleProvider, SampleConsumer, useSample};
 
 
